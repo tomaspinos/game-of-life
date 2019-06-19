@@ -2,6 +2,7 @@ package org.jaweze.gol;
 
 import lombok.Value;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Value
@@ -14,6 +15,19 @@ public class World {
     }
 
     public World nextGeneration() {
-        grid.getLivingCells()
+        List<Cell> nextLivingCells = new ArrayList<>();
+
+        for (Coordinates coordinates : grid.getLivingCellAndNeighboursCoordinates()) {
+            if (determineNextCellState(grid.getCellState(coordinates), grid.getLivingNeighboursCount(coordinates)) == CellState.ALIVE) {
+                nextLivingCells.add(new Cell(coordinates, CellState.ALIVE));
+            }
+        }
+
+        return new World(nextLivingCells);
+    }
+
+    private CellState determineNextCellState(CellState currentState, int livingNeighboursCount) {
+        // TODO
+        return CellState.ALIVE;
     }
 }
