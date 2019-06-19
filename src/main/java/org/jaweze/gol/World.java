@@ -2,24 +2,24 @@ package org.jaweze.gol;
 
 import lombok.Value;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Value
 public class World {
 
     Grid grid;
 
-    public World(List<Cell> livingCells) {
+    public World(Set<Coordinates> livingCells) {
         grid = new Grid(livingCells);
     }
 
     public World nextGeneration() {
-        List<Cell> nextLivingCells = new ArrayList<>();
+        Set<Coordinates> nextLivingCells = new LinkedHashSet<>();
 
-        for (Coordinates coordinates : grid.getLivingCellAndNeighboursCoordinates()) {
+        for (Coordinates coordinates : grid.getLivingCellsAndNeighbours()) {
             if (determineNextCellState(grid.getCellState(coordinates), grid.getLivingNeighboursCount(coordinates)) == CellState.ALIVE) {
-                nextLivingCells.add(new Cell(coordinates, CellState.ALIVE));
+                nextLivingCells.add(coordinates);
             }
         }
 
