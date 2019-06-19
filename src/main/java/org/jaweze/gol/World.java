@@ -18,7 +18,8 @@ public class World {
         Set<Coordinates> nextLivingCells = new LinkedHashSet<>();
 
         for (Coordinates coordinates : grid.getLivingCellsAndNeighbours()) {
-            if (determineNextCellState(grid.getCellState(coordinates), grid.getLivingNeighboursCount(coordinates)) == CellState.ALIVE) {
+            CellState nextCellState = determineNextCellState(grid.getCellState(coordinates), grid.getLivingNeighboursCount(coordinates));
+            if (nextCellState == CellState.ALIVE) {
                 nextLivingCells.add(coordinates);
             }
         }
