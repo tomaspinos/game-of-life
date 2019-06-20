@@ -23,7 +23,7 @@ public class World {
 
         for (Coordinates coordinates : grid.getLivingCellsAndNeighbours()) {
             CellState nextCellState = determineNextCellState(grid.getCellState(coordinates), grid.getLivingNeighboursCount(coordinates));
-            if (nextCellState == CellState.ALIVE) {
+            if (nextCellState == CellState.alive) {
                 nextLivingCells.add(coordinates);
             }
         }
@@ -32,19 +32,19 @@ public class World {
     }
 
     private CellState determineNextCellState(CellState currentState, int livingNeighboursCount) {
-        if (currentState == CellState.ALIVE) {
+        if (currentState == CellState.alive) {
             if (livingNeighboursCount < 2) {
-                return CellState.DEAD;
+                return CellState.dead;
             } else if (livingNeighboursCount == 2 || livingNeighboursCount == 3) {
-                return CellState.ALIVE;
+                return CellState.alive;
             } else {
-                return CellState.DEAD;
+                return CellState.dead;
             }
-        } else if (currentState == CellState.DEAD) {
+        } else if (currentState == CellState.dead) {
             if (livingNeighboursCount == 3) {
-                return CellState.ALIVE;
+                return CellState.alive;
             } else {
-                return CellState.DEAD;
+                return CellState.dead;
             }
         } else {
             throw new IllegalStateException("Unknown cell state: " + currentState);

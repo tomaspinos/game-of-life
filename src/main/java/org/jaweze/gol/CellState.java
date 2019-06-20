@@ -2,6 +2,6 @@ package org.jaweze.gol;
 
 public enum CellState {
 
-    ALIVE,
-    DEAD
+    alive,
+    dead
 }

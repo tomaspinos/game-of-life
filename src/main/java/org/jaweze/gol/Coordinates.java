@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 @Value(staticConstructor = "of")
 public class Coordinates {
 
-    private static final List<Coordinates> NEIGHBOURS_RELATIVE_COORDINATES = Arrays.asList(
+    private static final List<Coordinates> neighboursRelativeCoordinates = Arrays.asList(
             of(-1, -1), of(0, -1), of(1, -1),
             of(-1, 0), of(1, 0),
             of(-1, 1), of(0, 1), of(1, 1)
@@ -18,7 +18,6 @@ public class Coordinates {
 
     int x;
     int y;
-
 
     public List<Coordinates> getMeAndNeighbours() {
         List<Coordinates> coordinates = new ArrayList<>();
@@ -28,7 +27,7 @@ public class Coordinates {
     }
 
     public List<Coordinates> getNeighbours() {
-        return NEIGHBOURS_RELATIVE_COORDINATES.stream().map(this::plus).collect(Collectors.toList());
+        return neighboursRelativeCoordinates.stream().map(this::plus).collect(Collectors.toList());
     }
 
     private Coordinates plus(Coordinates other) {

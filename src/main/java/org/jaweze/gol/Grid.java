@@ -32,7 +32,7 @@ public class Grid {
     }
 
     public CellState getCellState(Coordinates coordinates) {
-        return livingCells.contains(coordinates) ? CellState.ALIVE : CellState.DEAD;
+        return livingCells.contains(coordinates) ? CellState.alive : CellState.dead;
     }
 
     public int countLivingCells(List<Coordinates> coordinates) {
