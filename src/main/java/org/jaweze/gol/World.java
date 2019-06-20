@@ -1,17 +1,21 @@
 package org.jaweze.gol;
 
-import lombok.Value;
+import lombok.ToString;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Value
+@ToString
 public class World {
 
-    Grid grid;
+    final Grid grid;
 
     public World(Set<Coordinates> livingCells) {
         grid = new Grid(livingCells);
+    }
+
+    public Set<Coordinates> getLivingCells() {
+        return grid.getLivingCells();
     }
 
     public World nextGeneration() {
@@ -28,7 +32,22 @@ public class World {
     }
 
     private CellState determineNextCellState(CellState currentState, int livingNeighboursCount) {
-        // TODO
-        return CellState.ALIVE;
+        if (currentState == CellState.ALIVE) {
+            if (livingNeighboursCount < 2) {
+                return CellState.DEAD;
+            } else if (livingNeighboursCount == 2 || livingNeighboursCount == 3) {
+                return CellState.ALIVE;
+            } else {
+                return CellState.DEAD;
+            }
+        } else if (currentState == CellState.DEAD) {
+            if (livingNeighboursCount == 3) {
+                return CellState.ALIVE;
+            } else {
+                return CellState.DEAD;
+            }
+        } else {
+            throw new IllegalStateException("Unknown cell state: " + currentState);
+        }
     }
 }

@@ -1,7 +1,7 @@
 package org.jaweze.gol;
 
 import lombok.Getter;
-import lombok.Value;
+import lombok.ToString;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,9 +9,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Value
+@ToString
 public class Grid {
 
+    @Getter
     Set<Coordinates> livingCells;
     @Getter
     Set<Coordinates> livingCellsAndNeighbours;

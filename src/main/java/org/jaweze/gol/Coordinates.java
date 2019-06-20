@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 public class Coordinates {
 
     private static final List<Coordinates> NEIGHBOURS_RELATIVE_COORDINATES = Arrays.asList(
-            of(-1, 1), of(0, 1), of(1, 1),
+            of(-1, -1), of(0, -1), of(1, -1),
             of(-1, 0), of(1, 0),
-            of(-1, -1), of(0, -1), of(1, -1)
+            of(-1, 1), of(0, 1), of(1, 1)
     );
 
     int x;
